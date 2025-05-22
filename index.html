@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Tamagotchi - Minnie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Mon Tamagotchi - Minnie</h1>
+
+        <div id="animal">
+            <img id="minnie" src="minnie.jpg" alt="Minnie Mouse" class="bounce">
+        </div>
+        
+        <div id="stats">
+            <div class="stat">
+                <p>🍎 Faim</p>
+                <span id="hangry">50</span>%
+                <div class="status-bar">
+                    <div class="status-fill" id="hangry-bar"></div>
+                </div>
+            </div>
+            <div class="stat">
+                <p>⚡ Energie</p>
+                <span id="energy">50</span>%
+                <div class="status-bar">
+                    <div class="status-fill" id="energy-bar"></div>
+                </div>
+            </div>
+            <div class="stat">
+                <p>😊 Joie</p>
+                <span id="happy">50</span>%
+                <div class="status-bar">
+                    <div class="status-fill" id="happy-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="buttons">
+            <button class="eat-btn">🧀 Nourrir</button>
+            <button class="sleep-btn">💤 Dormir</button>
+            <button class="play-button">🎀 Jouer</button>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
