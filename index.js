@@ -187,11 +187,29 @@ function sleeping() {
         return;
     }
 
-    showMessage("Minnie fait dodo... 💤", 'info');
+    // Messages variés pour dormir
+    const sleepMessages = [
+        "Minnie fait dodo... 💤",
+        "Bonne nuit Minnie ! 🌙",
+        "Minnie s'endort paisiblement... 😴",
+        "Doux rêves Minnie ! ✨",
+        "Minnie compte les moutons... 🐑"
+    ];
+    
+    const wakeMessages = [
+        "Minnie s'est réveillée ! Elle se sent mieux ! 🌟",
+        "Bonjour Minnie ! Bien reposée ? ☀️",
+        "Minnie a fait de beaux rêves ! 💭",
+        "Minnie se réveille en pleine forme ! 💪",
+        "Minnie étire ses petits bras ! 🤗"
+    ];
+    
+    const randomSleepMessage = sleepMessages[Math.floor(Math.random() * sleepMessages.length)];
+    showMessage(randomSleepMessage, 'info');
     isSleeping = true;
     
     // Animation de sommeil
-    minnieElement.classList.remove('bounce', 'shake', 'pulse');
+    minnieElement.classList.remove('bounce', 'shake', 'pulse', 'spin', 'dance', 'wiggle', 'jump', 'flip', 'heartbeat', 'rainbow');
     minnieElement.classList.add('sleep');
     
     // Désactiver les boutons pendant le sommeil
@@ -211,7 +229,8 @@ function sleeping() {
         isSleeping = false;
         minnieElement.classList.remove('sleep');
         minnieElement.classList.add('bounce');
-        showMessage("Minnie s'est réveillée ! Elle se sent mieux ! 🌟", 'success');
+        const randomWakeMessage = wakeMessages[Math.floor(Math.random() * wakeMessages.length)];
+        showMessage(randomWakeMessage, 'success');
         enableButtons();
     }, 5000);
 }
@@ -227,10 +246,22 @@ function eating() {
 
     hangry += 25;
     energy += 5;
-    showMessage("Miam ! Minnie a bien mangé ! 🧀", 'success');
+    
+    // Messages variés pour manger
+    const eatMessages = [
+        "Miam ! Minnie a bien mangé ! 🧀",
+        "Délicieux ! Minnie se régale ! 😋",
+        "Minnie dévore tout avec plaisir ! 🍎",
+        "Que c'est bon ! Minnie est satisfaite ! 🥨",
+        "Minnie croque à pleines dents ! 🥕",
+        "Un vrai festin pour Minnie ! 🍰"
+    ];
+    
+    const randomMessage = eatMessages[Math.floor(Math.random() * eatMessages.length)];
+    showMessage(randomMessage, 'success');
     
     // Animation
-    minnieElement.classList.remove('shake', 'sleep');
+    minnieElement.classList.remove('shake', 'sleep', 'spin', 'dance', 'wiggle', 'jump', 'flip', 'heartbeat', 'rainbow');
     minnieElement.classList.add('pulse');
     setTimeout(() => minnieElement.classList.remove('pulse'), 1000);
     
@@ -254,17 +285,53 @@ function playing() {
     happy += 20;
     energy -= 10;
     hangry -= 5;
-    showMessage("Minnie s'amuse beaucoup ! 🎀", 'success');
     
-    // Animation
-    minnieElement.classList.remove('bounce', 'sleep', 'pulse');
-    minnieElement.classList.add('shake');
+    // Animations aléatoires et messages variés
+    const playAnimations = ['shake', 'spin', 'dance', 'wiggle', 'jump', 'flip', 'heartbeat', 'rainbow'];
+    const playMessages = [
+        "Minnie s'amuse beaucoup ! 🎀",
+        "Hourra ! Minnie danse de joie ! 💃",
+        "Minnie fait des pirouettes ! ✨",
+        "Que c'est amusant ! Minnie rigole ! 😄",
+        "Minnie saute de bonheur ! 🌟",
+        "Minnie virevolte joyeusement ! 🎈",
+        "C'est la fête ! Minnie est ravie ! 🎉",
+        "Minnie rayonne de bonheur ! 🌈"
+    ];
+    
+    // Sélection aléatoire
+    const randomAnimation = playAnimations[Math.floor(Math.random() * playAnimations.length)];
+    const randomMessage = playMessages[Math.floor(Math.random() * playMessages.length)];
+    
+    showMessage(randomMessage, 'success');
+    
+    // Animation aléatoire
+    minnieElement.classList.remove('bounce', 'sleep', 'pulse', 'shake', 'spin', 'dance', 'wiggle', 'jump', 'flip', 'heartbeat', 'rainbow');
+    minnieElement.classList.add(randomAnimation);
+    
+    // Retour à l'animation de base après l'animation
+    const animationDuration = getAnimationDuration(randomAnimation);
     setTimeout(() => {
-        minnieElement.classList.remove('shake');
+        minnieElement.classList.remove(randomAnimation);
         minnieElement.classList.add('bounce');
-    }, 600);
+    }, animationDuration);
     
     updateDisplay();
+}
+
+// Obtenir la durée de l'animation
+function getAnimationDuration(animationName) {
+    const durations = {
+        'shake': 600,
+        'spin': 1000,
+        'dance': 1000,
+        'wiggle': 800,
+        'jump': 800,
+        'flip': 1200,
+        'heartbeat': 1000,
+        'rainbow': 1500
+    };
+    return durations[animationName] || 800;
 }
 
 // Désactiver les boutons
