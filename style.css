@@ -1,6 +1,6 @@
 /* Police et fond */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
     background: linear-gradient(135deg, #ffb6c1, #ffd1dc, #ffe4e1);
     margin: 0;
     padding: 0;
@@ -117,6 +117,7 @@ h1 {
     50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6); }
 }
 
+/* Classes d'animation */
 .bounce { animation: bounce 2s infinite ease-in-out; }
 .shake { animation: shake 0.6s ease-in-out; }
 .spin { animation: spin 1s ease-in-out; }
@@ -164,6 +165,21 @@ h1 {
 .stat-low { color: #ff4500; }
 .stat-critical { color: #dc143c; animation: pulse 1s infinite; }
 
+/* Status bar */
+.status-bar {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    height: 8px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.status-fill {
+    height: 100%;
+    transition: width 0.5s ease, background-color 0.3s ease;
+    border-radius: 10px;
+}
+
 /* Boutons */
 #buttons {
     margin-top: 25px;
@@ -205,6 +221,69 @@ button:disabled {
     box-shadow: none;
 }
 
+/* Contrôles audio */
+#audio-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+#volume-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#volume-slider {
+    width: 80px;
+    height: 4px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff69b4;
+    cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff69b4;
+    cursor: pointer;
+    border: none;
+}
+
+#mute-btn {
+    background: rgba(255, 105, 180, 0.2);
+    border: 1px solid #ff69b4;
+    color: #ff1493;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    min-width: auto;
+    transition: all 0.3s ease;
+}
+
+#mute-btn:hover {
+    background: rgba(255, 105, 180, 0.3);
+    transform: none;
+}
+
 /* Message */
 #message {
     margin-top: 20px;
@@ -238,21 +317,6 @@ button:disabled {
     border: 1px solid #90ee90;
 }
 
-/* Status bar */
-.status-bar {
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    height: 8px;
-    margin-top: 5px;
-    overflow: hidden;
-}
-
-.status-fill {
-    height: 100%;
-    transition: width 0.5s ease, background-color 0.3s ease;
-    border-radius: 10px;
-}
-
 /* Responsive */
 @media (max-width: 500px) {
     #container {
@@ -273,5 +337,15 @@ button:disabled {
     button {
         width: 80%;
         margin: 5px 0;
+    }
+
+    #audio-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #volume-control {
+        width: 100%;
+        justify-content: center;
     }
 }
